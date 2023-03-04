@@ -8,4 +8,5 @@
     <string name="guessNumberInput">Guess the Number</string>
     <string name="scoreLabel">Score</string>
     <string name="scoreValue">TextView</string>
+    <string name="answerHint">TextView</string>
 </resources>

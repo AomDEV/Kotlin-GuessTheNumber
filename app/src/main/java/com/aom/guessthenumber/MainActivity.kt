@@ -8,6 +8,7 @@ import android.widget.*
 class MainActivity : AppCompatActivity() {
     var challengeNumber: Int = 0
     var scoreNumber: Int = 0
+    var guessCount: Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -46,11 +47,12 @@ class MainActivity : AppCompatActivity() {
         val guessNumber = guessNumberInput.getText().toString()
 
         if(guessNumber.isEmpty()) return newGame()
+        guessCount++
         toggleHintLayout(true)
         if(guessNumber.toInt() < challengeNumber)
-            hintText.setText("Lower" + challengeNumber.toString())
+            hintText.setText("Lower")
         else if(guessNumber.toInt() > challengeNumber)
-            hintText.setText("Higher" + challengeNumber.toString())
+            hintText.setText("Higher")
         else
             correct()
     }
@@ -60,14 +62,25 @@ class MainActivity : AppCompatActivity() {
         toggleHintLayout(false)
         if(resetScore) updateScore(0)
         challengeNumber = (0 until 1000).random()
+        updateAnswerHint()
         guessNumberInput.getText().clear()
+        guessCount = 0
     }
 
     fun correct() {
         updateScore(scoreNumber+1)
-        Toast.makeText(applicationContext,"YOU WIN!",Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            applicationContext,
+            "YOU WIN! (You have guessed " + guessCount.toString() + " times.)",
+            Toast.LENGTH_SHORT
+        ).show()
         toggleHintLayout(false)
         newGame(false)
+    }
+
+    fun updateAnswerHint() {
+        var answerText = findViewById<TextView>(R.id.answerHint)
+        answerText.setText(challengeNumber.toString())
     }
 
     fun updateScore(value: Int) {
