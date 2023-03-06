@@ -9,7 +9,7 @@
 - สามารถเล่นเกมใหม่ได้
 
 ### Demo
-_Coming soon_
+[Video](https://drive.google.com/file/d/1vEg3aaet9WCQqOubXcR3ukeorNxWxHej/view?usp=sharing)
 
 ### Members
 - Siriwat Janke (6310680233)
